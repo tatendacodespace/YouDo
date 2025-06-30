@@ -102,39 +102,38 @@
 </head>
 <body class="flex flex-col items-center justify-center min-h-screen relative">
     <div class="progress-bar"></div>
-    <img src="https://unpkg.com/undraw@latest/svg/undraw_gaming_re_cma2.svg" class="doodle" style="top: 10px; left: 10px; width: 80px; transform: rotate(-10deg); opacity: 0.7;" alt="doodle">
-    <img src="https://unpkg.com/undraw@latest/svg/undraw_celebration_re_kc9k.svg" class="doodle" style="bottom: 10px; right: 10px; width: 80px; transform: rotate(8deg); opacity: 0.7;" alt="doodle">
+    <img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji/assets/Sparkles/3D/sparkles_3d.png" class="doodle" style="bottom: 10px; right: 10px; width: 64px; height: 64px; transform: rotate(8deg); opacity: 0.7;" alt="doodle">
     <div id="hearts"></div>
     <div class="z-10 flex flex-col items-center justify-center">
       <div class="text-3xl md:text-4xl font-extrabold text-purple-800 mb-10 text-center drop-shadow-lg tracking-wide animate-bounce handwritten">Pick your character</div>
-      <div class="flex flex-row gap-12 mb-4">
+      <div class="flex flex-row flex-wrap gap-8 md:gap-12 mb-4 justify-center">
         <!-- Player 1 Card -->
-        <div class="card-flip bg-blue-100 rounded-3xl shadow-2xl flex flex-col items-center p-8 w-72 hover:scale-110 hover:shadow-blue-400 hover:ring-4 hover:ring-blue-300 hover:ring-opacity-60 transition-transform duration-300 cursor-pointer group card-glow-blue" onclick="flipCard(this)">
+        <div class="card-flip bg-blue-100 rounded-3xl shadow-2xl flex flex-col items-center p-8 w-80 h-96 min-w-[320px] min-h-[380px] hover:scale-110 hover:shadow-blue-400 hover:ring-4 hover:ring-blue-300 hover:ring-opacity-60 transition-transform duration-300 cursor-pointer group card-glow-blue relative" onclick="flipCard(this)">
           <div class="card-inner relative w-full h-full">
-            <div class="card-front flex flex-col items-center">
+            <div class="card-front flex flex-col items-center justify-center h-full">
               <div class="text-lg font-bold text-blue-700 mb-2 group-hover:animate-bounce handwritten">Player 1</div>
-              <div class="text-8xl mb-4 group-hover:animate-bounce" style="font-size: 7rem;">🧍🏾</div>
+              <div class="text-8xl mb-4 group-hover:animate-bounce" style="font-size: 6rem;">🧍🏾</div>
               <div class="text-xl font-bold text-blue-900 mb-2 group-hover:text-blue-600 transition handwritten">Friend</div>
               <a href="friend-threat.html" class="px-6 py-2 mt-2 bg-blue-400 hover:bg-blue-500 text-white rounded-full font-semibold shadow-md transition group-hover:scale-110">Choose</a>
             </div>
-            <div class="card-back flex flex-col items-center justify-center">
+            <div class="card-back flex flex-col items-center justify-center h-full p-4">
               <div class="font-bold mb-2">Fun Fact</div>
-              <div>Friends are the family you choose! 💙</div>
+              <div class="text-base text-center">Friends are the family you choose! 💙</div>
             </div>
           </div>
         </div>
         <!-- Player 2 Card -->
-        <div class="card-flip bg-pink-100 rounded-3xl shadow-2xl flex flex-col items-center p-8 w-72 hover:scale-110 hover:shadow-pink-400 hover:ring-4 hover:ring-pink-300 hover:ring-opacity-60 transition-transform duration-300 cursor-pointer group card-glow-pink" onclick="flipCard(this)">
+        <div class="card-flip bg-pink-100 rounded-3xl shadow-2xl flex flex-col items-center p-8 w-80 h-96 min-w-[320px] min-h-[380px] hover:scale-110 hover:shadow-pink-400 hover:ring-4 hover:ring-pink-300 hover:ring-opacity-60 transition-transform duration-300 cursor-pointer group card-glow-pink relative" onclick="flipCard(this)">
           <div class="card-inner relative w-full h-full">
-            <div class="card-front flex flex-col items-center">
+            <div class="card-front flex flex-col items-center justify-center h-full">
               <div class="text-lg font-bold text-pink-700 mb-2 group-hover:animate-bounce handwritten">Player 2</div>
-              <div class="text-8xl mb-4 group-hover:animate-bounce" style="font-size: 7rem;">🧍🏿‍♀️</div>
+              <div class="text-8xl mb-4 group-hover:animate-bounce" style="font-size: 6rem;">🧍🏿‍♀️</div>
               <div class="text-xl font-bold text-pink-900 mb-2 group-hover:text-pink-600 transition handwritten">Girlfriend</div>
               <a href="reasons.html" class="px-6 py-2 mt-2 bg-pink-400 hover:bg-pink-500 text-white rounded-full font-semibold shadow-md transition group-hover:scale-110">Choose</a>
             </div>
-            <div class="card-back flex flex-col items-center justify-center">
+            <div class="card-back flex flex-col items-center justify-center h-full p-4">
               <div class="font-bold mb-2">Fun Fact</div>
-              <div>Girlfriends make every adventure sweeter! 💖</div>
+              <div class="text-base text-center">Girlfriends make every adventure sweeter! 💖</div>
             </div>
           </div>
         </div>
