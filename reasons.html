@@ -57,19 +57,28 @@
       width: 260px;
       height: 180px;
       perspective: 1000px;
+      cursor: pointer;
+      transition: width 0.4s cubic-bezier(0.23, 1.01, 0.32, 1), height 0.4s cubic-bezier(0.23, 1.01, 0.32, 1);
+    }
+    .flip-card.expanded {
+      width: 380px;
+      height: 320px;
+      z-index: 10;
     }
     .flip-card-inner {
       position: relative;
       width: 100%;
       height: 100%;
       text-align: center;
-      transition: transform 0.6s;
+      transition: transform 0.6s, box-shadow 0.4s;
       transform-style: preserve-3d;
       box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);
       border-radius: 1.5rem;
     }
-    .flip-card:hover .flip-card-inner {
+    .flip-card:hover .flip-card-inner,
+    .flip-card.expanded .flip-card-inner {
       transform: rotateY(180deg);
+      box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18);
     }
     .flip-card-front, .flip-card-back {
       position: absolute;
@@ -80,14 +89,14 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
       font-size: 1.1rem;
       font-weight: 500;
       padding: 1.2rem;
-      overflow-y: auto;
       word-break: break-word;
       text-align: center;
       scrollbar-width: thin;
+      transition: none;
     }
     .flip-card-front {
       background: #fff0f6;
@@ -97,6 +106,63 @@
       background: #e0c3fc;
       color: #6c3483;
       transform: rotateY(180deg);
+      z-index: 1002;
+      overflow-y: auto;
+    }
+    .popover {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.45);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadein 0.3s;
+    }
+    @keyframes fadein {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .popover-card {
+      background: #e0c3fc;
+      color: #6c3483;
+      border-radius: 2rem;
+      box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18);
+      padding: 2.5rem 2rem;
+      max-width: 98vw;
+      width: 98vw;
+      max-height: 90vh;
+      min-height: 220px;
+      font-size: 1.15rem;
+      font-family: 'Indie Flower', cursive;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1001;
+      animation: popscale 0.4s cubic-bezier(0.23, 1.01, 0.32, 1);
+      overflow-y: auto;
+    }
+    @keyframes popscale {
+      from { transform: scaleY(0.2) scaleX(0.7); opacity: 0; }
+      60% { transform: scaleY(1.1) scaleX(1.05); opacity: 1; }
+      to { transform: scaleY(1) scaleX(1); opacity: 1; }
+    }
+    .popover-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      font-size: 1.5rem;
+      color: #b388ff;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 1003;
+      transition: color 0.2s;
+    }
+    .popover-close:hover {
+      color: #d72660;
     }
   </style>
 </head>
@@ -106,19 +172,19 @@
     <div class="text-2xl md:text-3xl font-semibold text-pink-600 mb-8 text-center handwritten">Why I Like You</div>
     <div class="text-base text-gray-500 mb-4 text-center handwritten">(Hint: Hover or tap on the cards to see more !)</div>
     <div class="flex flex-wrap justify-center gap-8 mb-10">
-      <div class="flip-card">
+      <div class="flip-card" onmouseenter="expandCard(this)" onmouseleave="shrinkCard(this)" onclick="expandCard(this)">
         <div class="flip-card-inner">
           <div class="flip-card-front">Firstly, you pretty mam... but not just pretty, you Fineeee.</div>
           <div class="flip-card-back">Like you don’t have to say nothing on FaceTime, just let me sit back and appreciate you finee... like beauty's in the eye of the beholder but we all behold you fine… literal proof that there has to be a creator finee... like no one’s perfect but God clearly has favourites fine... and lastly imma have eyes for nobody but you fine…</div>
         </div>
       </div>
-      <div class="flip-card">
+      <div class="flip-card" onmouseenter="expandCard(this)" onmouseleave="shrinkCard(this)" onclick="expandCard(this)">
         <div class="flip-card-inner">
           <div class="flip-card-front">Secondly, I appreciate you for being more than eye candy, Mrs.</div>
           <div class="flip-card-back">I’m glad you are how you are, you a really cool individual to be around and someone I can build a friendship in a relationship with and someone I can whole heartedly say I enjoy talking to everyday.</div>
         </div>
       </div>
-      <div class="flip-card">
+      <div class="flip-card" onmouseenter="expandCard(this)" onmouseleave="shrinkCard(this)" onclick="expandCard(this)">
         <div class="flip-card-inner">
           <div class="flip-card-front">Lastly, I don’t know bout you but I think we’d look great together.</div>
           <div class="flip-card-back">And I love the values you stand for so you’ve already won me over.</div>
@@ -146,6 +212,16 @@
       setTimeout(() => heart.remove(), 7000);
     }
     setInterval(createHeart, 500);
+
+    // Card expand/collapse logic
+    function expandCard(card) {
+      // Remove expanded from all cards first
+      document.querySelectorAll('.flip-card.expanded').forEach(c => c.classList.remove('expanded'));
+      card.classList.add('expanded');
+    }
+    function shrinkCard(card) {
+      card.classList.remove('expanded');
+    }
   </script>
 </body>
 </html>
