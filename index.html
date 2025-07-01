@@ -55,11 +55,16 @@
     .envelope-container {
       min-height: 100vh;
       z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .envelope-outer {
       position: relative;
       width: 420px;
+      max-width: 96vw;
       height: 270px;
+      max-height: 60vw;
       margin: 0 auto;
       cursor: pointer;
       display: flex;
@@ -75,10 +80,45 @@
       transform: scale(1.03) rotate(-2deg);
     }
     .envelope-outer.opened {
+      /* On mobile, don't move envelope so far off screen */
       transform: scale(0.7) rotate(-10deg) translate(-180px, 180px);
       left: 0;
       bottom: 0;
       z-index: 2;
+    }
+    @media (max-width: 600px) {
+      .envelope-outer {
+        width: 98vw;
+        height: 160px;
+        left: 0 !important;
+        bottom: 0 !important;
+        margin: 0 auto;
+        transform: none !important;
+        transition: none;
+      }
+      .envelope-outer.opened {
+        transform: none !important;
+        left: 0 !important;
+        bottom: 0 !important;
+        margin: 0 auto;
+        z-index: 2;
+      }
+      .paper {
+        min-height: 110px;
+        width: 97vw;
+        left: 50%;
+        bottom: 30px;
+        transform: translate(-50%, 70%) scaleY(0.1) scale(1);
+        font-size: 1.05rem;
+        padding: 1.2rem 0.5rem 0.5rem 0.5rem;
+      }
+      .envelope-outer.opened .paper {
+        transform: translate(-50%, -60%) scaleY(1) scale(1.01);
+        z-index: 20;
+      }
+      .envelope-container {
+        overflow: visible !important;
+      }
     }
     .envelope-flap {
       position: absolute;
@@ -147,6 +187,7 @@
       left: 50%;
       bottom: 40px;
       width: 96%;
+      max-width: 98vw;
       min-height: 220px;
       background: #fff;
       border-radius: 16px;
@@ -161,6 +202,7 @@
       justify-content: center;
       pointer-events: none;
       border: 2px dashed #b388ff55;
+      overflow: hidden;
     }
     .envelope-outer.opened .paper {
       transform: translate(-50%, -70%) scaleY(1) scale(1.25);
@@ -176,18 +218,37 @@
       60% { transform: translate(-50%, -80%) scaleY(1.1) scale(1.25); }
       100% { transform: translate(-50%, -70%) scaleY(1) scale(1.25); }
     }
+    .paper-content {
+      font-size: 1.25rem;
+      padding: 2.2rem 2.2rem 1.2rem 2.2rem;
+      text-align: center;
+      word-break: break-word;
+      max-width: 100%;
+    }
     @media (max-width: 600px) {
-      .envelope-outer { width: 99vw; height: 180px; }
-      .paper { min-height: 120px; transform: translate(-50%, 70%) scaleY(0.1) scale(1); }
-      .envelope-outer.opened .paper { transform: translate(-50%, -70%) scaleY(1) scale(1.05); }
-      .paper-content { font-size: 1.05rem; padding: 1.2rem 0.5rem 0.5rem 0.5rem; }
+      .paper {
+        min-height: 110px;
+        width: 97vw;
+        left: 50%;
+        bottom: 30px;
+        transform: translate(-50%, 70%) scaleY(0.1) scale(1);
+        font-size: 1.05rem;
+        padding: 1.2rem 0.5rem 0.5rem 0.5rem;
+      }
+      .envelope-outer.opened .paper {
+        transform: translate(-50%, -60%) scaleY(1) scale(1.01);
+        z-index: 20;
+      }
+      .envelope-container {
+        overflow: visible !important;
+      }
     }
   </style>
 </head>
 <body class="flex flex-col items-center justify-center min-h-screen relative">
     <div id="hearts"></div>
     <div class="envelope-container flex flex-col items-center justify-center min-h-screen">
-      <div class="envelope-outer" id="envelope" onclick="openEnvelope()">
+      <div class="envelope-outer" id="envelope" onclick="toggleEnvelope()">
         <div class="envelope-flap" id="flap"></div>
         <div class="envelope-body">
           <span class="from-label handwritten">From Thapelo</span>
@@ -232,8 +293,9 @@
       }
       setInterval(createHeart, 500);
 
-      function openEnvelope() {
-        document.getElementById('envelope').classList.add('opened');
+      function toggleEnvelope() {
+        const envelope = document.getElementById('envelope');
+        envelope.classList.toggle('opened');
       }
     </script>
 </body>
