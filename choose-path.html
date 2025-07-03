@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
   <style>
-    /* Page-specific styles only (card, popover, etc.) */
+    /* Page-specific styles onlt, they only apply to this page */
     .card-glow-blue:hover { box-shadow: 0 0 32px 8px #60a5fa, 0 0 64px 16px #3b82f6; }
     .card-glow-pink:hover { box-shadow: 0 0 32px 8px #f472b6, 0 0 64px 16px #ec4899; }
     .card-flip { perspective: 1000px; }
@@ -42,7 +42,7 @@
           </div>
           <div class="card-back flex flex-col items-center justify-center h-full p-4">
             <div class="font-bold mb-2">You better not</div>
-            <div class="text-base text-center"> Nothing to see here, keep it moving </div>
+            <div class="text-base text-center"> This is not a trick question, do the right thing </div>
           </div>
         </div>
       </div>
@@ -57,7 +57,7 @@
           </div>
           <div class="card-back flex flex-col items-center justify-center h-full p-4">
             <div class="font-bold mb-2">Fun Fact</div>
-            <div class="text-base text-center"> She want me fr, hehehehehe</div>
+            <div class="text-base text-center"> I plotted on you for a week before i approached you</div>
           </div>
         </div>
       </div>
@@ -69,7 +69,7 @@
     function flipCard(card) {
       card.classList.toggle('flipped');
     }
-    // Confetti burst on card choose
+    // Confetti burst when you choose a card
     document.querySelectorAll('.card-flip a').forEach(btn => {
       btn.addEventListener('click', function(e) {
         e.preventDefault();
@@ -98,11 +98,10 @@
         setTimeout(() => conf.remove(), 1200);
       }
     }
-    // Parallax background
     document.addEventListener('mousemove', function(e) {
       document.body.style.backgroundPosition = `${e.clientX/40}px ${e.clientY/40}px`;
     });
-    // Easter egg: press 'h' to show a hidden heart
+    // hidden feature for pc users, the can press 'h' to show a hidden heart
     document.addEventListener('keydown', function(e) {
       if (e.key === 'h') {
         const heart = document.createElement('div');
