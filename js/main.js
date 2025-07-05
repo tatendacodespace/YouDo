@@ -1,6 +1,5 @@
-// main.js - Shared scripts for WillYouBeMine project
 
-// Floating hearts animation (shared)
+// Floating hearts animation
 function createHeart() {
   const heart = document.createElement('div');
   heart.className = 'heart';
@@ -15,5 +14,3 @@ function createHeart() {
   setTimeout(() => heart.remove(), 7000);
 }
 setInterval(createHeart, 500);
-
-// Add more shared scripts as needed
