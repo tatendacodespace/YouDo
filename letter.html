@@ -6,53 +6,7 @@
   <title>Our Story</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
-  <style>
-    body {
-      background: linear-gradient(135deg, #e0c3fc 0%, #fce4ec 100%);
-      min-height: 100vh;
-      overflow-x: hidden;
-      cursor: url('https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2764.png'), auto;
-    }
-    .heart {
-      position: absolute;
-      width: 24px;
-      height: 24px;
-      pointer-events: none;
-      opacity: 0.7;
-      animation: float 6s linear infinite;
-    }
-    @keyframes float {
-      0% { transform: translateY(0) scale(1); opacity: 0.7; }
-      100% { transform: translateY(-100vh) scale(1.3); opacity: 0; }
-    }
-    .handwritten {
-      font-family: 'Indie Flower', cursive;
-    }
-    .doodle {
-      position: absolute;
-      z-index: 20;
-      pointer-events: none;
-    }
-    .progress-bar {
-      position: fixed;
-      top: 0; left: 0; width: 100vw; height: 8px;
-      background: linear-gradient(90deg, #f472b6 0%, #b388ff 100%);
-      box-shadow: 0 2px 8px #b388ff44;
-      animation: progress 2s linear forwards;
-    }
-    @keyframes progress {
-      from { width: 0; }
-      to { width: 100vw; }
-    }
-    @keyframes fadeout {
-      0% { opacity: 1; }
-      100% { opacity: 0; }
-    }
-    @media (max-width: 768px) {
-      .w-full { width: 95vw !important; }
-      .mb-8 { margin-bottom: 1.5rem !important; }
-    }
-  </style>
+  <link rel="stylesheet" href="css/main.css">
 </head>
 <body class="flex flex-col items-center justify-center min-h-screen relative">
   <div id="hearts"></div>
@@ -63,32 +17,22 @@
       Share Your Thoughts
     </a>
   </div>
+  <script src="js/main.js"></script>
   <script>
-    // Floating hearts animation (shared)
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.className = 'heart';
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = (4 + Math.random() * 3) + 's';
-      heart.innerHTML = `
-        <svg viewBox="0 0 32 29.6" fill="#ff80ab" width="24" height="24">
-          <path d="M23.6,0c-2.6,0-5,1.3-6.6,3.3C15.4,1.3,13,0,10.4,0C4.7,0,0,4.7,0,10.4c0,7.1,10.2,13.2,15.1,18.7c0.6,0.7,1.7,0.7,2.3,0
-            C21.8,23.6,32,17.5,32,10.4C32,4.7,27.3,0,23.6,0z"/>
-        </svg>`;
-      document.getElementById('hearts').appendChild(heart);
-      setTimeout(() => heart.remove(), 7000);
-    }
-    setInterval(createHeart, 500);
-
-    // Letter fade-in animation
+    // Letter fade animation
     const letterText = [
-      "Hey individual, I understand that this would be thee weirdest way to answer a ‘how did this relationship start’ question because we were literally sold to each other but I’m glad that’s happened.",
-      "We’ve spoke everyday since then and I still enjoy learning about you and how you think, like I’ve said before you’ve already won me over.",
-      "You’re a beautiful individual and have the persona to Match (besides that gangster part🧍🏿‍♂)…",
-      "I’ve thought about holding out but… I want you Mrs, so that isn’t an option and to be honest I can’t let you go.",
-      "I’ve been given something with a lot of potential and me wasting it would be dumb of me so I hope you excited for our separate paths to finally merge into one because I know I am.",
-      "And you know how I feel about you so I’d be happy to take it to the next step with you princess and I hope you are too.",
-      "What's a better wat to start the month than starting it together"
+      "When i think about refinding ones self, i think about the day i found you (or you found me). The half to my whole, skin like gold ",
+      "You smile when i tell you there are no sunsets that could take my gaze off you. My personal sunset. I have been told i have a tendency to love hard so ill try to love you gently ",
+      "I'll wait for you to find yourself on days when mirrors don't reflect familiar faces.",
+      "I'll be peace.",
+      "The kind you can rest your head knowing i'll still be there in the morning.",
+      "I'll be careful.",
+      "Because i know the past hasn't treated you as well as your future will. If im being honest, i always find myself trying to find myself.",
+      "I'm not confident everyday so i hope it means more when i confidently say i love you.",
+      "I struggle with insecurities but I wont project this onto you.",
+      "I will not make it your duty to show me how to love myself. I only ask that you love me in the way you do.",
+      "Honestly",
+      "Im obsessed with the sky. But i look at you and wonder how satisfied God must feel to having painted something more beautiful than sunsets."
     ];
     let idx = 0;
     function showNextSentence() {
